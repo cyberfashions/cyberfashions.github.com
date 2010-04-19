@@ -1,0 +1,587 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+  <title>Cyber Fashions</title>
+    <meta name="keywords" content="clothing, apparel, designs, fashion, clothes,  hiking, outdoor apparel, clothing designer, mens clothing, cotton clothing, back country, eco friendly, organic products, travel gear, urban wear, outdoor store, ski clothing, outdoor clothing, green clothing, clothing design, travel clothing, silk clothing, fashion clothing, organic clothing, clothes line, travel clothes, clothes design, eco products, green design, outdoors wear" />
+    <meta name="description" content="Shop online. Cyber Fashions is an outlet clothing company." />  
+  <meta http-equiv="Content-Language" content="en-us" />
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+  <link REL="SHORTCUT ICON" HREF="favicon.ico">
+  <link rel="stylesheet" type="text/css" href="/css/global.css" />
+
+  <link rel="stylesheet" type="text/css" href="/css/cyberfashions.css" />
+  <!--[if lt IE 7.]><link href="/css/ie.css" rel="stylesheet" type="text/css" /><![endif]-->
+  
+  <script type="text/javascript">
+    // z16
+    var nauImageURL = "/images";  
+  </script>
+  <script src="/js/jquery-1.3.2.min.js" type="text/javascript" ></script>
+  <script src="/js/navigation.js" type="text/javascript" ></script>
+  <script src="/js/jquery.form.js" type="text/javascript" ></script>
+  
+	<script language="javascript" type="text/javascript">
+		
+		//--------------------------------------------------------------------------------------------------------
+		// onload
+		//--------------------------------------------------------------------------------------------------------
+		window.onload = function(){
+			cpubrowserbenchmark(1000000);
+		
+    
+    
+    
+    
+    
+        homePromo1= new Image(); 
+  			homePromo1.src="/images/home/100330_M2_PORT_HP_PRO_195X200.jpg"; 
+
+        
+        
+      
+        homePromo2= new Image(); 
+  			homePromo2.src="/images/home/100330_W2_PORT_HP_PRO_195X200.jpg"; 
+
+  
+    
+        bottomPromo1= new Image(); 
+  			bottomPromo1.src="/images/home/100330_W_SPRING_HP2_120X180.jpg"; 
+
+  
+      
+        bottomPromo2= new Image(); 
+  			bottomPromo2.src="/images/home/100330_M_SPRING_HP2_130X180.jpg"; 
+
+   
+      
+        bottomPromo3= new Image(); 
+  			bottomPromo3.src="/images/home/100405_Succ_pro_2_280x195.jpg"; 
+
+   
+      
+        bottomPromo4= new Image(); 
+  			bottomPromo4.src="/images/home/100323_HPpro_W_DualCitHdy_2.jpg"; 
+
+     
+      
+        bottomPromo5= new Image(); 
+  			bottomPromo5.src="/images/home/100323_HPpro_M_acoustic_2.jpg"; 
+
+    
+        
+      
+        bottomPromo6= new Image(); 
+  			bottomPromo6.src="/images/home/100217_pPRO_GLIMPSEW2_140X1.jpg"; 
+
+      
+		}
+		
+		
+		//--------------------------------------------------------------------------------------------------------
+		// cpu / browser speed testing
+		//--------------------------------------------------------------------------------------------------------
+		var cpubrowserbenchmark = function(count) {
+			var date1 = new Date()
+			var start = date1.getTime()
+			for (var i=1; i<=count; i++)  {}
+			date1 = new Date()
+			var finish = date1.getTime()
+			speedmulti = Math.round(((finish-start)/1000)/ 0.084);
+			// set minimum multip
+			if (speedmulti < 1){
+				speedmulti = 1;
+			}
+			homepagefade = window.setInterval(function(){switchimage('next')}, 5000);
+		}
+		
+		
+		//--------------------------------------------------------------------------------------------------------
+		// Z-Fade v. 1.05
+		// Copyright 2008 by Zaneray Inc.
+		// Written by: Flori Seeger
+		//--------------------------------------------------------------------------------------------------------
+		var zfade = function (element, start, end, duration, init, callback) {
+			if (init == true){
+				if (start < end){
+					element.direction = 'in';
+				}
+				if (start > end){
+					element.direction = 'out';
+				}
+				if (start == end){
+					clearTimeout(element.fade);
+					return;
+				}
+				element.speed = Math.round(100 / (duration / 33) * speedmulti);
+				element.timeout = Math.round(duration / 100);
+				clearTimeout(element.fade);
+			}
+			element.opacity = start;
+			element.fire = false;
+			switch (element.direction){
+				
+				case 'in':
+					if ((element.opacity + element.speed) >= 100){
+						element.fire = false;
+					}
+					else {
+						element.opacity = element.opacity + element.speed;
+						element.fire = true;
+					}
+				break;
+				
+				case 'out':
+					if (element.opacity - element.speed <= 0){
+						element.fire = false;
+					}
+					else {
+						element.opacity = element.opacity - element.speed;
+						element.fire = true;
+					}
+				break;
+				
+			}
+			element.zopacity = function (opacity,element) {		 
+				element.style.filter = "alpha(opacity=" + opacity + ")";
+				element.style.opacity = (opacity / 100);
+			}
+			if (element.fire == true){
+				element.zopacity (element.opacity, element);
+				element.fade = setTimeout(function () { zfade(element, element.opacity, end, duration,false,callback);}, element.timeout);
+			}
+			else {
+				element.zopacity(end,element);
+				clearTimeout(element.fade);
+			}
+		}
+		
+		
+		//--------------------------------------------------------------------------------------------------------
+		// Z-Switch v. 1.02
+		// Copyright 2009 by Zaneray Inc.
+		// Written by: Flori Seeger
+		//--------------------------------------------------------------------------------------------------------
+		var switchimage = function(direction){
+			// show next image
+			if (direction == 'next'){
+				if (currentimage + 1 == zoomimgarray.length){
+					currentimage = 0;
+				}
+				else {
+					currentimage ++;
+				}
+			}
+			
+			// show prev image
+			if (direction == 'prev'){
+				if (currentimage == 0){
+					currentimage = (zoomimgarray.length - 1);
+				}
+				else {
+					currentimage --;
+				}
+			}
+			// call helper function
+			zoomimgswitch();
+		}
+		
+		var heroimgactive = 1;
+		var zfadeworking = false;
+		var loadanimshowing = false;
+		function zoomimgswitch(){
+			if (eval("img" + currentimage).complete == true){
+				clearTimeout(checkifloaded);
+				loadanimshowing = false;
+				if (zfadeworking == false){
+					zfadeworking = true;
+					switch(heroimgactive){
+						case 1:
+							document.getElementById('heroimagefade1').style.zIndex = 1;
+							document.getElementById('heroimagefade2').style.zIndex = 2;
+							//zfade (document.getElementById('heroimagefade1'), 100, 0, 2500, true);
+							document.getElementById('heroimagefade2').src = zoomimgarray[currentimage];
+							document.getElementById('heroimglink').href = hero_link[currentimage];
+							if ( hero_photo_caption[currentimage] != '' || hero_photo_location[currentimage] != '' || hero_photo_content[currentimage] != '' ) { 
+								document.getElementById('thephotocreditbox').style.display = 'block';
+								document.getElementById('tipinfo').innerHTML = '<p class="tiptitle">' + hero_photo_caption[currentimage] +'<br />' + hero_photo_location[currentimage] + '</p><p>' + hero_photo_content[currentimage] +'</p>';
+              }
+							else {
+                document.getElementById('thephotocreditbox').style.display = 'none';
+							}
+							zfade (document.getElementById('heroimagefade2'), 0, 100, 2000, true);
+ 							heroimgactive = 2;
+							break;
+						case 2:
+							document.getElementById('heroimagefade1').style.zIndex = 2;
+							document.getElementById('heroimagefade2').style.zIndex = 1;
+							//zfade (document.getElementById('heroimagefade2'), 100, 0, 2500, true);
+							document.getElementById('heroimagefade1').src = zoomimgarray[currentimage];
+							document.getElementById('heroimglink').href = hero_link[currentimage];
+              if ( hero_photo_caption[currentimage] != '' || hero_photo_location[currentimage] != '' || hero_photo_content[currentimage] != '' ) {
+                document.getElementById('thephotocreditbox').style.display = 'block';
+                document.getElementById('tipinfo').innerHTML = '<p class="tiptitle">' + hero_photo_caption[currentimage] +'<br />' + hero_photo_location[currentimage] + '</p><p>' + hero_photo_content[currentimage] +'</p>';
+              }
+              else {
+                document.getElementById('thephotocreditbox').style.display = 'none';
+              }
+							zfade (document.getElementById('heroimagefade1'), 0, 100, 2000, true);
+							heroimgactive = 1;
+						break;
+					}
+					zfadeworking = false;
+				}
+			}
+			else {
+				if (loadanimshowing == false){
+					// show loading......
+				}
+				loadanimshowing = true;
+				var checkifloaded = setTimeout(function () { zoomimgswitch(); }, 50);
+			}
+		}
+		
+
+		
+		var currentimage = 5;
+		
+		// hero crossfade arrays
+		var zoomimgarray = new Array();
+		var hero_link = new Array();
+		var hero_alt = new Array();
+		var hero_photo_caption = new Array();
+		var hero_photo_location = new Array();
+		var hero_photo_content = new Array();
+		
+		
+				
+				zoomimgarray[0] = '/images/heros/home_change1_740x390.jpg';
+				hero_link[0] = '/womens/categories/shirts/m1-short-sleeve-henley-stripe-500W02.html';
+				hero_alt[0] = 'M1 SHORT SLEEVE HENLEY STRIPE';
+				hero_photo_caption[0] = 'Photo: Daniel Sharp, 2010';
+				hero_photo_location[0] = '';
+				hero_photo_content[0] = '';
+	
+				
+				
+				zoomimgarray[1] = '/images/heros/home_change2_740x390.jpg';
+				hero_link[1] = '/mens/categories/pants/trajectory-3-quarter-pant-100M01.html';
+				hero_alt[1] = 'TRAJECTORY 3 QUARTER PANT';
+				hero_photo_caption[1] = 'Photo: Daniel Sharp, 2010';
+				hero_photo_location[1] = '';
+				hero_photo_content[1] = '';
+				
+	
+				
+				zoomimgarray[2] = '/images/heros/100316_home_w2_740x390.jpg';
+				hero_link[2] = '/womens/categories/dresses/chrysalis-dress-stripe-606W01.html';
+				hero_alt[2] = 'CHRYSALIS DRESS';
+				hero_photo_caption[2] = 'Photo: Daniel Sharp, 2010';
+				hero_photo_location[2] = '';
+				hero_photo_content[2] = '';
+				
+		
+				zoomimgarray[3] = '/images/heros/100316_home_m2_740x390.jpg';
+				hero_link[3] = '/mens/categories/pants/detour-short-203M01.html';
+				hero_alt[3] = 'DETOUR SHORT';
+				hero_photo_caption[3] = 'Photo: Daniel Sharp, 2010';
+				hero_photo_location[3] = '';
+				hero_photo_content[3] = '';
+	
+				
+				
+				zoomimgarray[4] = '/images/heros/100316_home_w3_740x390.jpg';
+				hero_link[4] = '/womens/categories/jackets/versa-blazer-007W01.html';
+				hero_alt[4] = 'VERSA BLAZER';
+				hero_photo_caption[4] = 'Photo: Daniel Sharp, 2010';
+				hero_photo_location[4] = '';
+				hero_photo_content[4] = '';
+				
+
+					
+				
+				zoomimgarray[5] = '/images/heros/home_change3_740x390.jpg';
+				hero_link[5] = '/mens/categories/jackets/riding-jacket-006M01.html';
+				hero_alt[5] = 'RIDING JACKET';
+				hero_photo_caption[5] = 'Photo: Daniel Sharp, 2010';
+				hero_photo_location[5] = '';
+				hero_photo_content[5] = '';
+
+	</script>
+
+  <script type="text/javascript">
+
+    <!--
+      function updateQty(zoiId,qty) {
+        var pars = "OPTION=EDITCART";
+        pars += "&EDIT=TRUE";
+        pars += "&PAGE=minicart";
+        pars += "&zoi_quantity-1="+qty;
+        pars += "&zoi_id-1=" + zoiId;
+        pars += "&zoi_save=1";
+        updateCartURL = "/za/NAU?" + pars;
+        cartsummaryURL = "/za/NAU?PAGE=cartsummary";
+        //self.location=updateCartURL;
+        $('#minicart').load(updateCartURL,function () {
+          setMiniCart(false);
+          $('#cartsummary').load(cartsummaryURL);
+          if ( returnObjById('ordersummary') ) {
+            $('#ordersummary').load('/za/NAU?PAGE=order-summary', function(){
+              $('#summarydonate').load('/za/NAU?PAGE=donate-summary');
+            });
+          } 
+        });
+      }
+      function deleteItemFromCart(cartId,idx) {
+        var cartsummaryURL = "/za/NAU?PAGE=cartsummary";
+        var deletePath = "/za/NAU?PAGE=minicart&OPTION=EDITCART";
+        deletePath += "&zoi_delete-"+idx+"=TRUE";
+        deletePath += "&zoi_save="+idx;
+        deletePath += "&zoi_id-"+idx+"="+cartId;
+        if ( returnObjById('ordersummary') ) {
+          $('#minicart').slideDown('fast', function() { $('#minicart').load(deletePath,function () { setMiniCart(true);$('#cartsummary').load(cartsummaryURL);$('#ordersummary').load('/za/NAU?PAGE=order-summary'); }) });
+        }
+        else {
+          $('#minicart').slideDown('fast', function() { $('#minicart').load(deletePath,function () { setMiniCart(true);$('#cartsummary').load(cartsummaryURL); }) });
+        }
+      }
+      function carttoggle() {
+        $('#minicart').load('/za/NAU?PAGE=minicart','',function() { setMiniCart(true); });
+      }
+      function turnEditBoxOn() {
+        $('#minicart').load('/za/NAU?PAGE=minicart&EDIT=TRUE','',function() { setMiniCart(false); });
+      }
+      function setMiniCart(toggle) {
+        var cartlineitems;
+        if (cartlineitems = returnObjById('cartlineitems')) {
+          if (cartlineitems.value != '0') {
+            if (cartlineitems.value == '1') {
+              //alert("height: 143px;");
+              returnObjById('cartwrapper').style.height = "143px";
+              returnObjById('cartwrapper').style.width = "290px";
+              //returnObjById('divcart2').style.width = "290px;"
+            }
+            else if (cartlineitems.value == '2') {
+              //alert("height: 288px;");
+              returnObjById('cartwrapper').style.height = "288px";
+              returnObjById('cartwrapper').style.width = "290px";
+              //returnObjById('divcart2').style.width = "290px;"
+            }
+            else {
+              //alert("height: 295px;");
+              returnObjById('cartwrapper').style.height = "295px";
+            }
+          }
+        }
+        if (toggle) {
+          $('#minicart').slideToggle(400);
+        }
+      }
+      
+    //-->
+  </script>
+  
+</head>
+
+<body >
+
+<div class="pagepad">
+  <div class="navsection">
+    <div class="contentsection">
+      <div class="logo"><a href="http://www.cyberfashions.com"><img src="/images/logo_big.jpg" alt="CyberFashions" border="0" /></a></div>
+      
+    <div id="cartbar">
+	   <div class="account">
+	    <a href="http://www.cyberfashions.com"><img src="/images/USA.png" alt="CyberFashions" border="0" /></a>&nbsp;
+		<a href="http://www.cyberfashions.com/espanol/"><img src="/images/Spain.png" alt="CyberFashions" border="0" /></a>&nbsp;
+		<a href="http://www.cyberfashions.com/portugues/"><img src="/images/Brazil.png" alt="CyberFashions" border="0" /></a>
+	   </div>
+    </div>
+
+<div class="navbar">
+  <div id="tdbuyers" class="navimage" onMouseOver="showmenu('buyers');" onMouseOut="hidemenu('buyers');">
+    <a href="http://www.nau.com/mens/"><img id="imgbuyers" src="/images/nav/buyers_off.gif" alt="Buyers" border="0" /></a>
+    <div id="buyers" class="menudd">
+    	<ul><li><a href="/portraits/mens/">Portraits</a></li><li><a href="http://www.nau.com/mens/categories/jackets/" id="mens1a">Jackets + Vests</a></li><li><a href="http://www.nau.com/mens/categories/shirts/" id="mens2a">Shirts</a></li><li><a href="http://www.nau.com/mens/categories/pants/" id="mens3a">Pants + Shorts</a></li><li><a href="http://www.nau.com/mens/categories/baselayer/" id="mens4a">Baselayer</a></li><li><a href="http://www.nau.com/mens/categories/insulation/" id="mens5a">Insulation</a></li><li><a href="http://www.nau.com/mens/categories/accessories/" id="mens6a">Accessories</a></li><li><a href="http://www.nau.com/mens/categories/sale/" id="mens7a">Sale + Specials</a></li></ul>
+    </div>
+  </div>
+  <div id="tdsellers" class="navimage" onMouseOver="showmenu('sellers');" onMouseOut="hidemenu('sellers');">
+    <a href="http://www.nau.com/womens/"><img id="imgsellers" src="/images/nav/sellers_off.gif" alt="Sellers" border="0" /></a>
+    <div id="sellers" class="menudd">	
+      <ul><li><a href="/portraits/womens/">Portraits</a></li><li><a href="http://www.nau.com/womens/categories/jackets/" id="womens1a">Jackets + Vests</a></li><li><a href="http://www.nau.com/womens/categories/shirts/" id="womens2a">Shirts</a></li><li><a href="http://www.nau.com/womens/categories/pants/" id="womens3a">Pants + Shorts</a></li><li><a href="http://www.nau.com/womens/categories/baselayer/" id="womens4a">Baselayer</a></li><li><a href="http://www.nau.com/womens/categories/dresses/" id="womens5a">Dresses + Skirts</a></li><li><a href="http://www.nau.com/womens/categories/insulation/" id="womens6a">Insulation</a></li><li><a href="http://www.nau.com/womens/categories/accessories/" id="womens7a">Accessories</a></li><li><a href="http://www.nau.com/womens/categories/sale/" id="womens8a">Sale + Specials</a></li></ul>
+    </div>
+  </div>
+  <div id="tdretail" class="navimage" onMouseOver="showmenu('retail');" onMouseOut="hidemenu('retail');">
+    <a href="http://www.nau.com/womens/"><img id="imgretail" src="/images/nav/retail_off.gif" alt="Retail" border="0" /></a>
+    <div id="retail" class="menudd">	
+      <ul><li><a href="/portraits/womens/">Portraits</a></li><li><a href="http://www.nau.com/womens/categories/jackets/" id="womens1a">Jackets + Vests</a></li><li><a href="http://www.nau.com/womens/categories/shirts/" id="womens2a">Shirts</a></li><li><a href="http://www.nau.com/womens/categories/pants/" id="womens3a">Pants + Shorts</a></li><li><a href="http://www.nau.com/womens/categories/baselayer/" id="womens4a">Baselayer</a></li><li><a href="http://www.nau.com/womens/categories/dresses/" id="womens5a">Dresses + Skirts</a></li><li><a href="http://www.nau.com/womens/categories/insulation/" id="womens6a">Insulation</a></li><li><a href="http://www.nau.com/womens/categories/accessories/" id="womens7a">Accessories</a></li><li><a href="http://www.nau.com/womens/categories/sale/" id="womens8a">Sale + Specials</a></li></ul>
+    </div>
+  </div>
+  
+ <div class="navspacerleft">&nbsp;</div>
+    
+
+</div>
+  </div>
+</div>
+<div class="herospacer">&nbsp;</div>
+
+
+<div class="contentsection">
+   <div class="herocontainer homehero">
+    <a id="heroimglink" href="/mens/categories/jackets/riding-jacket-006M01.html">
+      <img id="heroimagefade1" src="/images/heros/100316_home_m3_740x390.jpg" width="740" height="390" title="RIDING JACKET" alt="RIDING JACKET" class="heroimage" style="position: absolute" />
+      <img id="heroimagefade2" width="740" height="390" src="/images/common/clear.gif" title="" alt="" class="heroimg" style="position: absolute" />
+    </a>
+
+	<div class="photocreditbox" id="thephotocreditbox"  >
+
+      <div id="photocredit" class="photocredit">
+        <div id="tipinfo" class="tipinfo">
+           <p class="tiptitle">Photo: Daniel Sharp, 2010<br />
+          </p>
+          <p></p>
+        </div>
+      </div>
+    </div>
+   </div>
+
+  <div class="featuresection">
+  	
+    
+    
+        <div class="homefeature" id="feature1" >
+          
+            <a href="http://www.nau.com/portraits/mens/"><img src="/images/home/100330_M1_PORT_HP_PRO_195X200.jpg" alt="NAU - MEN'S PORTRAITS" border="0" onmouseover="swapImg(this,'/images/home/100330_M2_PORT_HP_PRO_195X200.jpg',1)" onmouseout="swapImg(this);" /></a>
+          
+        </div>
+        
+        
+      
+        <div class="homefeature" id="feature2" >
+          
+            <a href="http://www.nau.com/portraits/womens/"><img src="/images/home/1371_6662_814_200x195.jpg" alt="NAU - WOMEN'S PORTRAITS" border="0" onmouseover="swapImg(this,'/images/home/1371_6662_814_2_200x195.jpg',1)" onmouseout="swapImg(this);" /></a>
+          
+        </div>
+        
+        
+      
+
+  </div>
+
+</div>
+
+<div class="homepromospacer">&nbsp;</div>
+
+<div class="contentsection">
+	
+    
+    
+		<a href="/womens/"
+		  
+		><img src="/images/home/100330_W_SPRING_HP1_120X180.jpg" alt="NAU WOMEN'S SPRING 2010 COLLECTION" border="0" onmouseover="swapImg(this,'/images/home/100330_W_SPRING_HP2_120X180.jpg',1)" onmouseout="swapImg(this);" class="bottomfeature" /></a>
+        
+        
+      
+		<a href="http://www.nau.com/mens/"
+		  
+		><img src="/images/home/100330_M_SPRING_HP1_130X180.jpg" alt="2010 NAU MEN'S SPRING LINE" border="0" onmouseover="swapImg(this,'/images/home/100330_M_SPRING_HP2_130X180.jpg',1)" onmouseout="swapImg(this);" class="bottomfeature" /></a>
+        
+        
+      
+		<a href="/nau/signup.html"
+		  
+		><img src="/images/home/100405_Succ_pro_1_280x1951.jpg" alt="WIN A SUCCINCT TRENCH" border="0" onmouseover="swapImg(this,'/images/home/100405_Succ_pro_2_280x195.jpg',1)" onmouseout="swapImg(this);" class="bottomfeature" /></a>
+        
+        
+      
+		<a href="/womens/categories/insulation/dual-citizen-hoody-300W01.html"
+		  
+		><img src="/images/home/100323_HPpro_W_DualCitHdy_1.jpg" alt="DUAL CITIZEN HOODY" border="0" onmouseover="swapImg(this,'/images/home/100323_HPpro_W_DualCitHdy_2.jpg',1)" onmouseout="swapImg(this);" class="bottomfeature" /></a>
+        
+        
+      
+		<a href="/mens/categories/jackets/acoustic-jacket-004M01.html"
+		  
+		><img src="/images/home/100323_HPpro_M_acoustic_1.jpg" alt="NAU ACOUSTIC JACKET" border="0" onmouseover="swapImg(this,'/images/home/100323_HPpro_M_acoustic_2.jpg',1)" onmouseout="swapImg(this);" class="bottomfeature" /></a>
+        
+        
+      
+		<a href="/womens/categories/dresses/glimpse-dress-602W01.html"
+		  
+		><img src="/images/home/100217_pPRO_GLIMPSEW1_140X1.jpg" alt="GLIMPSE DRESS" border="0" onmouseover="swapImg(this,'/images/home/100217_pPRO_GLIMPSEW2_140X1.jpg',1)" onmouseout="swapImg(this);" class="bottomfeature" /></a>
+
+        
+        
+      
+    <div class="clear"></div>
+	
+	
+</div>
+<script language="javascript" type="text/javascript">
+
+				img0 = new Image();
+				img0.src = '/images/heros/100316_home_w1_740x390.jpg';
+				
+				img1 = new Image();
+				img1.src = '/images/heros/100316_home_m1_740x390.jpg';
+				
+				img2 = new Image();
+				img2.src = '/images/heros/100316_home_w2_740x390.jpg';
+				
+				img3 = new Image();
+				img3.src = '/images/heros/100316_home_m2_740x390.jpg';
+				
+				img4 = new Image();
+				img4.src = '/images/heros/100316_home_w3_740x390.jpg';
+				
+				img5 = new Image();
+				img5.src = '/images/heros/100316_home_m3_740x390.jpg';
+				
+</script>
+		
+		
+				<form action="/za/NAU" method="post" name="signupform">
+				<input type="hidden" name="PAGE" value="signup" />
+		  		<div class="contentsection">
+		  			<div class="emailintro">Get Cyber Fashions news, sales &amp; events</div>
+
+		  			<div class="emailwrapper"><p><input name="EMAIL" class="emailinput" type="text" value="ENTER EMAIL ADDRESS" onfocus="clearEmail(this);" /></p></div>
+		  			<div class="emailjoin"><a href="#" onclick="document.signupform.submit();" id="signupId"><img src="/images/join.jpg" alt="Join Now" border="0" /></a></div>
+		  			<div class="emailseparatorspace">&nbsp;</div>
+		  			<div class="emailseparatorpad">
+		  				<div class="emailseparator"><img src="/images/spacer.gif" alt="" height="1" width="1" /></div>
+		  			</div>
+		  		</div>
+		  	</form>
+		  
+		<div class="footerwrapper">
+
+			<span class="footer footerpad">1-800-555-6677</span>
+			<span class="footer footerpad"><a href="http://www.nau.com/customer-service/">Customer Service</a></span>
+      <span class="footer footerpad"><a href="javascript:;" onclick="window.open('/za/NAU?PAGE=size-chart','sizechart','location=0,status=0,scrollbars=1,width=1080,height=800');return false;">Size Chart</a></span>
+
+      <span class="footer footerpad"><a href="http://www.nau.com/womens/categories/accessories/gift-card-400000.html">Gift Cards</a></span>
+	  <span class="footer footerpad"><a href="http://www.nau.com/about/about-us/pressroom.html">Pressroom</a></span>
+      <span class="footer footerpad"><a href="http://www.nau.com/nau-guarantee.html">Guarantee</a></span>
+      <span class="footer footerpad"><a href="http://www.nau.com/privacy.html">Privacy</a></span>
+     	<span class="footer footerpad"><a href="http://www.nau.com/terms.html">Terms</a></span>
+
+      <span class="footer footerpad"><a href="http://www.nau.com/site-map.html">Site Map</a></span>
+      <span class="footer footerpad">&copy;&nbsp;Cyber Fashions,&nbsp;Inc.&nbsp;2010</span>
+		</div>
+		<div class="footerseparatorpad"><div class="footerseparator"></div></div>
+		<div class="footer footerseo">
+		    <img src="/images/tarjetas.jpg" border="0" />&nbsp;
+			<img src="/images/echeck.jpg" border="0" />&nbsp;
+			<img src="/images/paypal.jpg" border="0" />&nbsp;
+			<img src="/images/ups.jpg" border="0" />&nbsp;
+			<img src="/images/usps.jpg" border="0" />
+      <div class="clear"></div>
+		</div>
+	</div>
+
+</body>
+
+</html>
